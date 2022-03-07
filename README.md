@@ -1,7 +1,7 @@
 
 # manage-transit-movements-prelodge-frontend
 
-This service allows a user to cancel a transit movement.
+This service allows a user to prelodge a transit movement.
 
 Service manager port: 10125
 
@@ -15,8 +15,6 @@ or
 <pre>sbt IntegrationTest/test</pre> 
 
 ### Running manually or for journey tests
-
-Note: The cancellation frontend is tested as part of the departures journey tests.
 
     sm --start CTC_TRADERS_PRELODGE -r
     sm --stop MANAGE_TRANSIT_MOVEMENTS_PRELODGE_FRONTEND
