@@ -1,5 +1,5 @@
 # Add all the application routes to the app.routes file
-->         /manage-transit-movements-prelodge-frontend                    app.Routes
+->         /manage-transit-movements/prelodge            app.Routes
 ->         /                          health.Routes
 
 GET        /admin/metrics             @com.kenshoo.play.metrics.MetricsController.metrics
