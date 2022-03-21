@@ -16,8 +16,10 @@ lazy val root = (project in file("."))
   .settings(inConfig(Test)(testSettings): _*)
   .configs(IntegrationTest)
   .settings(inConfig(IntegrationTest)(itSettings): _*)
+  .settings(inConfig(IntegrationTest)(org.scalafmt.sbt.ScalafmtPlugin.scalafmtConfigSettings): _*)
   .settings(majorVersion := 0)
   .settings(useSuperShell in ThisBuild := false)
+  .settings(scalafmtOnCompile in ThisBuild := true)
   .settings(
     scalaVersion := "2.12.10",
     name := appName,
