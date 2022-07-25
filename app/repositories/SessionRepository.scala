@@ -44,7 +44,7 @@ class SessionRepository @Inject() (
         IndexModel(
           Indexes.ascending("lastUpdated"),
           IndexOptions()
-            .name("lastUpdatedIdx")
+            .name("user-answers-last-updated-index")
             .expireAfter(appConfig.cacheTtl, TimeUnit.SECONDS)
         )
       )
