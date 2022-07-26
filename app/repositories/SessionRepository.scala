@@ -40,14 +40,8 @@ class SessionRepository @Inject() (
       collectionName = "user-answers",
       mongoComponent = mongoComponent,
       domainFormat = UserAnswers.format,
-      indexes = Seq(
-        IndexModel(
-          Indexes.ascending("lastUpdated"),
-          IndexOptions()
-            .name("user-answers-last-updated-index")
-            .expireAfter(appConfig.cacheTtl, TimeUnit.SECONDS)
-        )
-      )
+      indexes = SessionRepository.indexes(appConfig),
+      replaceIndexes = appConfig.replaceIndexes
     ) {
 
   implicit val instantFormat: Format[Instant] = MongoJavatimeFormats.instantFormat
@@ -96,4 +90,16 @@ class SessionRepository @Inject() (
       .map(
         _ => true
       )
+}
+
+object SessionRepository {
+
+  def indexes(appConfig: FrontendAppConfig): Seq[IndexModel] = {
+    val userAnswersLastUpdatedIndex: IndexModel = IndexModel(
+      keys = Indexes.ascending("lastUpdated"),
+      indexOptions = IndexOptions().name("user-answers-last-updated-index").expireAfter(appConfig.cacheTtl, TimeUnit.SECONDS)
+    )
+
+    Seq(userAnswersLastUpdatedIndex)
+  }
 }
